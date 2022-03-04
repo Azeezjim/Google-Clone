@@ -1,10 +1,10 @@
-import React, { creatContext, useContext, useState} from "react";
+import React, { createContext, useContext, useState} from "react";
 
-const ResultContext = creatContext();
+const ResultContext = createContext();
 const baseURL = 'https://travel-advisor.p.rapidapi.com/locations/v2';
 
 export const ResultContextProvider = ({ children  }) => {
-  const [ results, setResults ] = useState([]);
+  const [ results, setResults ] = useState([]);  
   const [ isLoading, setIsLoading ] = useState(false);
   const [ searchTerm, setSearchTerm ] = useState('');
 
