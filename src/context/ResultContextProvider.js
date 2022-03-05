@@ -9,7 +9,7 @@ export const ResultContextProvider = ({ children  }) => {
   const [ searchTerm, setSearchTerm ] = useState('Most expensive');
 
   const getResults = async(type) => {
-    // setIsLoading(true);
+    setIsLoading(true);
 
     const response = await fetch(`${baseURL}${type}`, {
       method: 'GET',
