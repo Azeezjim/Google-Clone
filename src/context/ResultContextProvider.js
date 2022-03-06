@@ -6,10 +6,10 @@ const baseURL = 'https://google-search3.p.rapidapi.com/api/v1';
 export const ResultContextProvider = ({ children  }) => {
   const [ results, setResults ] = useState([]);  
   const [ isLoading, setIsLoading ] = useState(false);
-  const [ searchTerm, setSearchTerm ] = useState('Most expensive');
+  const [ searchTerm, setSearchTerm ] = useState('Most expensive cars');
 
   const getResults = async(type) => {
-    setIsLoading(true);
+    // setIsLoading(true);
 
     const response = await fetch(`${baseURL}${type}`, {
       method: 'GET',
@@ -21,6 +21,15 @@ export const ResultContextProvider = ({ children  }) => {
       }
     });
     const data = await response.json();
+
+    console.log(type, data);
+    if(type.includes('/news')) {
+      setResults(dzta.entries);
+    } else { 
+       setResults(data.image_results);
+    } else {
+      setResults(data.results);
+    }
 
     setResults(data);
     isLoading(false);
