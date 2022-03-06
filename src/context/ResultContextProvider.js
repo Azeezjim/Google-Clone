@@ -24,14 +24,14 @@ export const ResultContextProvider = ({ children  }) => {
 
     console.log(type, data);
     if(type.includes('/news')) {
-      setResults(dzta.entries);
-    } else { 
-       setResults(data.image_results);
+      setResults(data.entries);
+    } else if(type.includes('/images')) {
+      setResults(data.image_results);
     } else {
       setResults(data.results);
     }
 
-    setResults(data);
+    // setResults(data);
     isLoading(false);
   }
 

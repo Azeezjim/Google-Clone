@@ -6,7 +6,7 @@ import { useResultContext } from '../context/ResultContextProvider';
 import { Loading } from './Loading';
 
 export const Results = () => {
-  const {results: {results, image_results, entries: news}, isLoading, getResults, searchTerm} = useResultContext();
+  const {results, isLoading, getResults, searchTerm} = useResultContext();
   const location = useLocation();
 
   useEffect(() => {
@@ -40,7 +40,7 @@ export const Results = () => {
       case '/images':
         return (
           <div className="flex flex-wrap justify-center items-center">
-          {image_results?.map(({ image, link: { href, title } }, index) => (
+          {results?.map(({ image, link: { href, title } }, index) => (
             <a href={href} target="_blank" key={index} rel="noreferrer" className="sm:p-3 p-5">
               <img src={image?.src} alt={title} loading="lazy" />
               <p className="sm:w-36 w-36 break-words text-sm mt-2">{title}</p>
@@ -52,8 +52,8 @@ export const Results = () => {
         case '/news':
         return (
         <div className="sm:px-56 flex flex-wrap justify-between space-y-6 items-center">
-          {console.log("news",news)}
-          {news?.map(({ links, id, source, title }) => (
+          {/* {console.log("news",news)} */}
+          {results?.map(({ links, id, source, title }) => (
             <div key={id} className="md:w-2/5 w-full">
               <a href={links?.[0].href} target="_blank" rel="noreferrer" className='hover:underline'>
                 <p className="text-lg dark:text-blue-300 text-blue-700  ">{title}</p>
