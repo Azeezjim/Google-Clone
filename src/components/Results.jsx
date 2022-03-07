@@ -6,7 +6,7 @@ import { useResultContext } from '../context/ResultContextProvider';
 import { Loading } from './Loading';
 
 export const Results = () => {
-  const {results, isLoading, getResults, searchTerm} = useResultContext();
+  const {results, isLoading, getResults, searchTerm} =  useResultContext();
   const location = useLocation();
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export const Results = () => {
         getResults(`${location.pathname}/q=${searchTerm}&num=40`);
       }
     }
-  },[searchTerm, location.pathname])
+  },[searchTerm,  location.pathname])
 
   if(isLoading) return <Loading />;
   console.log("location", location.pathname);
@@ -69,7 +69,16 @@ export const Results = () => {
       );  
 
       case '/videos':
-      return 'VIDEOS';  
+      return (
+        <div className='flex flex-wrap'>
+          {results?.map((video, index) => (
+            <div key={index} className="p-2">
+              console.log('video', video);
+              <ReactPlayer url={video.additional_links?.[0].href} controls width="355px" height="200px" />
+            </div>
+          ))}
+        </div>
+      )  
       
     default:
       return 'ERROR';

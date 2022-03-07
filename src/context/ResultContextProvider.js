@@ -9,7 +9,7 @@ export const ResultContextProvider = ({ children  }) => {
   const [ searchTerm, setSearchTerm ] = useState('Most expensive cars');
 
   const getResults = async(type) => {
-    // setIsLoading(true);
+    setIsLoading(true);
 
     const response = await fetch(`${baseURL}${type}`, {
       method: 'GET',
@@ -21,8 +21,8 @@ export const ResultContextProvider = ({ children  }) => {
       }
     });
     const data = await response.json();
-
-    console.log(type, data);
+     console.log("responce", data)
+    // console.log(type, data);
     if(type.includes('/news')) {
       setResults(data.entries);
     } else if(type.includes('/images')) {
@@ -32,7 +32,7 @@ export const ResultContextProvider = ({ children  }) => {
     }
 
     // setResults(data);
-    isLoading(false);
+    setIsLoading(false);
   }
 
   return (
